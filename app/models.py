@@ -64,14 +64,20 @@ class Blogs(db.Model):
         db.session.add(self)
         db.session.commit()
 
-    #get all pitches
+    #get all blogs
     @classmethod
     def get_blogs(cls):
         blog = Blogs.query.all()
         return blog
 
-    #get pitches according to persons id
+    #get blogs according to persons id
     @classmethod
     def get_userblog(cls,id):
         blog = Blogs.query.filter_by(user_id=id).all()
+        return blog
+
+    #get the new blogs
+    @classmethod
+    def get_newblogs(cls):
+        blog = Blogs.query.limit(5).all()
         return blog

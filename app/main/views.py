@@ -15,6 +15,17 @@ def index():
     blogposts = Blogs.get_blogs()
     return render_template('index.html', blogposts =blogposts)
 
+@main.route('/latestblogs')
+def latestblogs():
+
+    '''
+    View latest page function that returns 5 newest blog posts and its data
+    '''
+    blogposts = Blogs.get_newblogs()
+    return render_template('latestblogs.html', blogposts =blogposts)
+
+
+#view and acess user profile
 @main.route('/user/<uname>')
 def profile(uname):
     user = User.query.filter_by(username = uname).first()

@@ -15,7 +15,7 @@
             </ul>
             <ul class="nav navbar-nav navbar-right">
               {% if current_user.is_authenticated %}
-              <li><a href="{{url_for('main.profile',uname=current_user.username)}}">Profile</a></li>
+              <li><a href="{{url_for('main.profile',uname=current_user.username)}}">Profile | My blogs </a></li>
               <li><a href="{{url_for('auth.logout')}}">Sign out</a></li>
               {% else %}
               <li><a href="{{url_for('auth.login')}}">Sign in</a></li>
@@ -24,7 +24,7 @@
             <ul class="nav navbar-nav navbar">
               {% if current_user.usertype == "Writer" %}
               <li><a href="{{url_for('main.new_pitch',userid=current_user.id)}}">Add a new blog post</a></li>
-              <li><a href="#">View latest blog posts</a></li>
+              <li><a href="{{url_for('main.latestblogs')}}">View latest blog posts</a></li>
               {% else %}
               <li><a href="#">View latest blog posts</a></li>
               {%endif%}
