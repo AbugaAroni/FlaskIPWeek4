@@ -3,7 +3,7 @@ from . import main
 from flask_login import login_required
 from ..models import User, Blogs
 from .. import db
-from .forms import BlogForm
+from .forms import BlogForm, Deleteform
 
 # Views
 @main.route('/')
@@ -32,6 +32,7 @@ def profile(uname):
     userid = user.id
     blogs = Blogs.get_userblog(userid)
 
+
     if user is None:
         abort(404)
 
@@ -58,3 +59,26 @@ def new_pitch(userid):
 
     title = 'New Blog Post'
     return render_template('submitblogs.html',title = title, blog_form=form)
+
+@main.route('/viewblog/<int:blogid>', methods = ['GET','POST'])
+@login_required
+def comment(blogid):
+#    form = Commentform()
+
+    #blog id needs a unique number
+    blogid=blogid
+    blogs = Blogs.get_singleblog(blogid)
+    #comments = Comment.get_comments(pitchid)
+    #user = User.query.all()
+
+#    if form.validate_on_submit():
+#        description = form.description.data
+#        new_comment = Comment(comment_description=description, user=current_user, pitch_id = pitchid)
+#        new_comment.save_comment()
+
+#        return redirect(url_for('main.comment',pitchid=pitchid))
+
+
+    title = 'View blog post'
+    return render_template('viewblogpost.html',title = title, blogs = blogs)
+     #,form=form, comments =comments, user =user)

@@ -1,4 +1,5 @@
 {% extends 'base.html'%}
+{% import "bootstrap/wtf.html" as wtf %}
 
 {% block content %}
 <div class="container">
@@ -23,7 +24,7 @@
                   <p> {{p.blog_category}}</p>
                   <p style="font-weight: bold"> Content </p>
                   <p>  {{ p.blog_content }}</p>
-                  <p> <a href="#"> View & manage comments </a> </p>
+                  <p> <a href="#"> View & manage blog information </a> </p>
                   <hr>
               </div>
               {% endfor %}
@@ -32,7 +33,7 @@
             <p>Either you have no blog posts, or an error occured</p>
           {%else%}
             <p>If you were a writer, this page would be filled with your blog posts</p>
-          {% endif %}  
+          {% endif %}
         </div>
     {% endif %}
 </div>

@@ -17,7 +17,7 @@
           <p> </p>
           <p style="font-weight: bold; font-style: underlined;"> Content: </p>
           <p>  {{ p.blog_content }}</p>
-          <p> <a href="#"> View & add comments </a> </p>
+          <p> <a href="{{url_for('main.comment',blogid=p.id)}}"> View & add comments </a> </p>
                 <hr>
       </div>
       {% endfor %}

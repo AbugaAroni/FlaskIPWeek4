@@ -81,3 +81,9 @@ class Blogs(db.Model):
     def get_newblogs(cls):
         blog = Blogs.query.limit(5).all()
         return blog
+
+    #get blog according to id
+    @classmethod
+    def get_singleblog(cls,id):
+        blogs = Blogs.query.filter_by(id=id).first()
+        return blogs

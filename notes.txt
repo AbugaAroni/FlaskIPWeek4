@@ -4,10 +4,11 @@ writer or user class in model
 make profile to view blogs
 make blogs class
 make submit blogs page
-
 Make view fucntion for index.html
-
 Make view blogs in views
-
 Make view latest Blogs
-Make view latest blogs
+
+
+Make a delete and update blog buttons(s)
+
+Makea view given blog post
