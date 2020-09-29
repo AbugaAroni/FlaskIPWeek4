@@ -28,7 +28,11 @@
               </div>
               {% endfor %}
           {%else%}
-          <p>Either you have no blog posts, or an error occured</p>
+          {% if user.usertype == "Writer" %}
+            <p>Either you have no blog posts, or an error occured</p>
+          {%else%}
+            <p>If you were a writer, this page would be filled with your blog posts</p>
+          {% endif %}  
         </div>
     {% endif %}
 </div>
