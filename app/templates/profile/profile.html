@@ -1,5 +1,4 @@
 {% extends 'base.html'%}
-<!-- {% import 'macros.html' as macro%} -->
 
 {% block content %}
 <div class="container">
@@ -14,21 +13,22 @@
   <!--Display blogs if user is a writer-->
       {% if user.usertype == "Writer" %}
         <div class="col-md-9">
-          <h2> Your posts </h2>
+          <h2> Your blog posts </h2>
           <hr>
-              {% for p in pitches %}
+              {% for p in blogs %}
               <div class="col-xs-5 col-sm-5 col-md-5 col-lg-5 review-card">
                   <p style="font-weight: bold"> Title </p>
-                  <p> {{ p.pitch_title}} </p>
+                  <p> {{ p.blog_title}} </p>
                   <p style="font-weight: bold"> Category </p>
-                  <p> {{p.pitch_category}} | <a href="/category/{{p.pitch_category}}"> View more </a> </p>
-                  <p style="font-weight: bold"> Description </p>
-                  <p>  {{ p.pitch_description }}</p>
-                  <p> <a href="/viewpitch/{{p.id}}"> View & add comments </a> </p>
+                  <p> {{p.blog_category}}</p>
+                  <p style="font-weight: bold"> Content </p>
+                  <p>  {{ p.blog_content }}</p>
+                  <p> <a href="#"> View & manage comments </a> </p>
+                  <hr>
               </div>
               {% endfor %}
           {%else%}
-          <p>Either you have no Pitches, or an error occured</p>
+          <p>Either you have no blog posts, or an error occured</p>
         </div>
     {% endif %}
 </div>

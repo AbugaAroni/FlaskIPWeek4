@@ -17,11 +17,13 @@ def index():
 @main.route('/user/<uname>')
 def profile(uname):
     user = User.query.filter_by(username = uname).first()
+    userid = user.id
+    blogs = Blogs.get_userblog(userid)
 
     if user is None:
         abort(404)
 
-    return render_template("profile/profile.html", user = user)
+    return render_template("profile/profile.html",user = user, blogs=blogs)
 
 #submit a pitch view, need to change the unique id
 @main.route('/newpost/<int:userid>', methods = ['GET','POST'])
