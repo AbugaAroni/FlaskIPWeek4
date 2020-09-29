@@ -2,9 +2,9 @@
 sign up as writer or user
 writer or user class in model
 make profile to view blogs
-
 make blogs class
 make submit blogs page
+
 Make view fucntion for index.html
 
 Make view blogs in views

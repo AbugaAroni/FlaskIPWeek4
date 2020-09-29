@@ -12,7 +12,8 @@ def index():
     '''
     View root page function that returns the index page and its data
     '''
-    return render_template('index.html')
+    blogposts = Blogs.get_blogs()
+    return render_template('index.html', blogposts =blogposts)
 
 @main.route('/user/<uname>')
 def profile(uname):

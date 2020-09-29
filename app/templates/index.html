@@ -3,8 +3,27 @@
 
 <!-- Content block -->
 {% block content %}
-<!-- Display all pitches-->
-<h3>Hi!</h3>
+<!-- Display all blog posts-->
+<hr>
+<h1 style="text-align: center;">All Blog Posts</h1>
   <hr>  <hr>
+<!--Display pitches-->
+<div class="col-md-12">
+  {% if blogposts %}
+      {% for p in blogposts %}
+      <div class="col-md-6 col-lg-6 review-card" style="border-right: solid; border-left: solid padding: 2px; ">
+          <p><span style="font-weight: bold"> Title: </span> {{ p.blog_title }} </p>
+          <p> <span style="font-weight: bold"> Category: </span> {{p.blog_category}}  </p>
+          <p> </p>
+          <p style="font-weight: bold; font-style: underlined;"> Content: </p>
+          <p>  {{ p.blog_content }}</p>
+          <p> <a href="#"> View & add comments </a> </p>
+                <hr>
+      </div>
+      {% endfor %}
+  {%else%}
+  <p>There are no blogs yet. Please log in and submit some blogs</p>
+  {% endif %}
+</div>
 
 {% endblock%}
