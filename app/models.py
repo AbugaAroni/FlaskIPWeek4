@@ -17,6 +17,8 @@ class User(UserMixin,db.Model):
     role_id = db.Column(db.Integer,db.ForeignKey('roles.id'))
     pass_secure = db.Column(db.String(255))
 
+    blogs = db.relationship('Blog',backref = 'user',lazy = "dynamic")
+
     @property
     def password(self):
         raise AttributeError('You cannot read the password attribute')
@@ -43,3 +45,31 @@ class Role(db.Model):
 
     def __repr__(self):
         return f'User {self.name}'
+
+class Blogs(db.Model):
+
+    __tablename__='blogs'
+
+    id = db.Column(db.Integer,primary_key = True)
+    blog_title = db.Column(db.String)
+    blog_category = db.Column(db.String)
+    blog_content = db.Column(db.String)
+    posted = db.Column(db.DateTime,default=datetime.utcnow)
+    user_id = db.Column(db.Integer,db.ForeignKey("users.id"))
+    deleted = db.Column(db.Integer, default=0)
+
+    def save_blog(self):
+        db.session.add(self)
+        db.session.commit()
+
+    #get all pitches
+    @classmethod
+    def get_blogs(cls):
+        blogs = Blogs.query.all()
+        return pitches
+
+    #get pitches according to persons id
+    @classmethod
+    def get_userblog(cls,id):
+        blogs = Blogs.query.filter_by(user_id=id).all()
+        return blogs
