@@ -1,9 +1,9 @@
 from flask import render_template,request,redirect,url_for, abort
 from . import main
-from flask_login import login_required
-from ..models import User, Blogs
+from flask_login import login_required, current_user
+from ..models import User, Blogs, Comment
 from .. import db
-from .forms import BlogForm, Deleteform
+from .forms import BlogForm, Deleteform, Commentform
 
 # Views
 @main.route('/')
@@ -63,22 +63,21 @@ def new_pitch(userid):
 @main.route('/viewblog/<int:blogid>', methods = ['GET','POST'])
 @login_required
 def comment(blogid):
-#    form = Commentform()
+    form = Commentform()
 
     #blog id needs a unique number
     blogid=blogid
     blogs = Blogs.get_singleblog(blogid)
-    #comments = Comment.get_comments(pitchid)
-    #user = User.query.all()
+    comments = Comment.get_comments(blogid)
+    user = User.query.all()
 
-#    if form.validate_on_submit():
-#        description = form.description.data
-#        new_comment = Comment(comment_description=description, user=current_user, pitch_id = pitchid)
-#        new_comment.save_comment()
+    if form.validate_on_submit():
+       description = form.description.data
+       new_comment = Comment(comment_description=description, user=current_user, blog_id = blogid)
+       new_comment.save_comment()
 
-#        return redirect(url_for('main.comment',pitchid=pitchid))
+       return redirect(url_for('main.comment',blogid=blogid))
 
 
     title = 'View blog post'
-    return render_template('viewblogpost.html',title = title, blogs = blogs)
-     #,form=form, comments =comments, user =user)
+    return render_template('viewblogpost.html',title = title, blogs = blogs, form=form, comments =comments, user =user)

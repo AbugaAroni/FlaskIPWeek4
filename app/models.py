@@ -20,6 +20,7 @@ class User(UserMixin,db.Model):
     pass_secure = db.Column(db.String(255))
 
     blogs = db.relationship('Blogs',backref = 'user',lazy = "dynamic")
+    comments = db.relationship('Comment',backref = 'user',lazy = "dynamic")
 
     @property
     def password(self):
@@ -60,6 +61,8 @@ class Blogs(db.Model):
     user_id = db.Column(db.Integer,db.ForeignKey("users.id"))
     deleted = db.Column(db.Integer, default=0)
 
+    comments = db.relationship('Comment', backref = 'blogs',lazy = "dynamic")
+
     def save_blog(self):
         db.session.add(self)
         db.session.commit()
@@ -87,3 +90,23 @@ class Blogs(db.Model):
     def get_singleblog(cls,id):
         blogs = Blogs.query.filter_by(id=id).first()
         return blogs
+
+class Comment(db.Model):
+
+    __tablename__='comments'
+
+    id = db.Column(db.Integer,primary_key = True)
+    comment_description = db.Column(db.String)
+    posted = db.Column(db.DateTime,default=datetime.utcnow)
+    user_id = db.Column(db.Integer,db.ForeignKey("users.id"))
+    blog_id = db.Column(db.Integer,db.ForeignKey("blogs.id"))
+
+    def save_comment(self):
+        db.session.add(self)
+        db.session.commit()
+
+    #get comments according to  pitchid
+    @classmethod
+    def get_comments(cls,id):
+        comments = Comment.query.filter_by(blog_id=id).all()
+        return comments
