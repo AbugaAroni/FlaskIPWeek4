@@ -81,3 +81,23 @@ def comment(blogid):
 
     title = 'View blog post'
     return render_template('viewblogpost.html',title = title, blogs = blogs, form=form, comments =comments, user =user)
+
+@main.route('/manageblogpost/<int:blogid>', methods = ['GET','POST'])
+@login_required
+def manage(blogid):
+
+    form1 = Deleteform()
+
+    #blog id needs a unique number
+    blogid=blogid
+    blogs = Blogs.get_singleblog(blogid)
+    comments = Comment.get_comments(blogid)
+    user = User.query.all()
+
+    if form.validate_on_submit():
+
+      return redirect(url_for('main.manage',blogid=blogid))
+
+
+    title = 'View blog post'
+    return render_template('manageblogposts.html',title = title, blogs = blogs,comments =comments, user =user, form1=form1)

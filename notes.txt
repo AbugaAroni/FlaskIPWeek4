@@ -7,8 +7,7 @@ make submit blogs page
 Make view fucntion for index.html
 Make view blogs in views
 Make view latest Blogs
+Make a view given blog post
 
 
 Make a delete and update blog buttons(s)
-
-Makea view given blog post
