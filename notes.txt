@@ -1,0 +1,8 @@
+
+
+sign up as writer or user
+
+writer or user class in model
+
+
+make profile to view blogs
