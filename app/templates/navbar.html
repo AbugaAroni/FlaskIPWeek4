@@ -1,4 +1,4 @@
-<div class="navbar navbar-inverse" role="navigation">
+00<div class="navbar navbar-inverse" role="navigation">
     <div class="container-fluid">
         <div class="navbar-header">
             <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
@@ -23,7 +23,7 @@
             </ul>
             <ul class="nav navbar-nav navbar">
               {% if current_user.usertype == "Writer" %}
-              <li><a href="#">Add a new blog</a></li>
+              <li><a href="{{url_for('main.new_pitch',userid=current_user.id)}}">Add a new blog post</a></li>
               <li><a href="#">View latest blog posts</a></li>
               {% else %}
               <li><a href="#">View latest blog posts</a></li>

@@ -1,9 +1,9 @@
 from flask import render_template,request,redirect,url_for, abort
 from . import main
 from flask_login import login_required
-from ..models import User
+from ..models import User, Blogs
 from .. import db
-#from .forms import avwvwe
+from .forms import BlogForm
 
 # Views
 @main.route('/')
@@ -22,3 +22,25 @@ def profile(uname):
         abort(404)
 
     return render_template("profile/profile.html", user = user)
+
+#submit a pitch view, need to change the unique id
+@main.route('/newpost/<int:userid>', methods = ['GET','POST'])
+@login_required
+def new_pitch(userid):
+    form = BlogForm()
+
+    useri=userid
+    current_user = User.query.filter_by(id = userid).first()
+
+    if form.validate_on_submit():
+        title = form.title.data
+        category = form.category.data
+        content = form.content.data
+        new_blog = Blogs(blog_title=title,blog_category=category,blog_content=content, user_id=useri)
+        new_blog.save_blog()
+
+
+        return redirect(url_for('main.profile',uname=current_user.username))
+
+    title = 'New Blog Post'
+    return render_template('submitblogs.html',title = title, blog_form=form)

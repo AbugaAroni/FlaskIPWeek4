@@ -2,6 +2,8 @@ from . import db
 from werkzeug.security import generate_password_hash,check_password_hash
 from flask_login import UserMixin
 from . import login_manager
+from datetime import datetime
+
 
 @login_manager.user_loader
 def load_user(user_id):
@@ -17,7 +19,7 @@ class User(UserMixin,db.Model):
     role_id = db.Column(db.Integer,db.ForeignKey('roles.id'))
     pass_secure = db.Column(db.String(255))
 
-    blogs = db.relationship('Blog',backref = 'user',lazy = "dynamic")
+    blogs = db.relationship('Blogs',backref = 'user',lazy = "dynamic")
 
     @property
     def password(self):
@@ -65,11 +67,11 @@ class Blogs(db.Model):
     #get all pitches
     @classmethod
     def get_blogs(cls):
-        blogs = Blogs.query.all()
-        return pitches
+        blog = Blogs.query.all()
+        return blog
 
     #get pitches according to persons id
     @classmethod
     def get_userblog(cls,id):
-        blogs = Blogs.query.filter_by(user_id=id).all()
-        return blogs
+        blog = Blogs.query.filter_by(user_id=id).all()
+        return blog
