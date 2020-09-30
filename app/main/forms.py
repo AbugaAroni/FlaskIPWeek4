@@ -18,3 +18,8 @@ class Deleteform(FlaskForm):
 
 class Deletecomment(FlaskForm):
     submit2 = SubmitField('Delete Comment')
+
+
+class UpdateBlog(FlaskForm):
+    content = TextAreaField('Make the changes you wanted',validators = [Required()])
+    submit3 = SubmitField('Submit')

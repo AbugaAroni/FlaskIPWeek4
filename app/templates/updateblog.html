@@ -4,7 +4,7 @@
 {% block content %}
     <div class="container">
 
-        <div class="col-md-8"  style="border-right: solid;">
+        <div class="col-md-8">
 
             <h2> Manage {{blogs.blog_title| capitalize}} </h2>
 
@@ -38,7 +38,7 @@
                         {% if c.user_id == u.id%}
                           <h5 style ="font-style: italic;"> Author: {{u.username}} </h5>
                           <div class="row">
-                            <div class="col-md-2" >
+                            <div class="col-md-2">
                             <button type="button" onClick="window.location.href='{{url_for('main.commdelete',comid=c.id)}}'" class="btn btn-primary">Delete comment</button>
                             </div>
                           </div>
@@ -54,7 +54,7 @@
         </div>
 
         <div class="col-md-4">
-            <h3 > Make changes to the blog post here </h3>
+            <h3 style="text-align: right;"> Make changes to the blog post here </h3>
               {{wtf.quick_form(form2)}}
         </div>
 
