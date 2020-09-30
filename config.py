@@ -8,8 +8,8 @@ class Config:
 
 
 class ProdConfig(Config):
-
-    pass
+    SQLALCHEMY_DATABASE_URI ='postgres://xznwkyhozgogtk:a8545b0b6b04f15d30fd66c101cb908477bdfe2bc8ab97f59dffd22dd62f0338@ec2-107-20-15-85.compute-1.amazonaws.com:5432/d5dv71jens3e1p'
+    SQLALCHEMY_TRACK_MODIFICATIONS = True
 
 
 class DevConfig(Config):
