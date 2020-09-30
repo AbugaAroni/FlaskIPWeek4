@@ -12,7 +12,7 @@
 
             <!--Displaying pitch info-->
             {% if blogs %}
-              <h4> Category: {{blogs.pitch_category}}</h4>
+              <h4> Category: {{blogs.blog_category}}</h4>
               <br>
               <p style="font-weight: bold;"> Content </p>
               <p> {{blogs.blog_content}}</p>
@@ -35,7 +35,7 @@
                     <hr>
                 {% endfor %}
             {%else%}
-              <p> Something went wrong or there are no comments available for this pitch</p>
+              <p> Something went wrong or there are no comments available for this blog post</p>
             {% endif %}
 
         </div>

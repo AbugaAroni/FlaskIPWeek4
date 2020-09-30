@@ -16,18 +16,22 @@
         <div class="col-md-9">
           <h2> Your blog posts </h2>
           <hr>
-              {% for p in blogs %}
-              <div class="col-xs-5 col-sm-5 col-md-5 col-lg-5 review-card">
-                  <p style="font-weight: bold"> Title </p>
-                  <p> {{ p.blog_title}} </p>
-                  <p style="font-weight: bold"> Category </p>
-                  <p> {{p.blog_category}}</p>
-                  <p style="font-weight: bold"> Content </p>
-                  <p>  {{ p.blog_content }}</p>
-                  <p> <a href="{{url_for('main.manage',blogid=p.id)}}"> View & manage blog information </a> </p>
-                  <hr>
-              </div>
-              {% endfor %}
+              {% if blogs %}
+                  {% for p in blogs %}
+                  <div class="col-xs-5 col-sm-5 col-md-5 col-lg-5 review-card">
+                      <p style="font-weight: bold"> Title </p>
+                      <p> {{ p.blog_title}} </p>
+                      <p style="font-weight: bold"> Category </p>
+                      <p> {{p.blog_category}}</p>
+                      <p style="font-weight: bold"> Content </p>
+                      <p>  {{ p.blog_content }}</p>
+                      <p> <a href="{{url_for('main.manage',blogid=p.id)}}"> View & manage blog information </a> </p>
+                      <hr>
+                  </div>
+                  {% endfor %}
+              {%else%}
+              <p> You have no blog posts yet </p>
+              {%endif%}      
           {%else%}
           {% if user.usertype == "Writer" %}
             <p>Either you have no blog posts, or an error occured</p>
