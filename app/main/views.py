@@ -3,7 +3,7 @@ from . import main
 from flask_login import login_required, current_user
 from ..models import User, Blogs, Comment
 from .. import db
-from .forms import BlogForm, Deleteform, Commentform
+from .forms import BlogForm, Deleteform, Commentform, Deletecomment
 
 # Views
 @main.route('/')
@@ -87,6 +87,7 @@ def comment(blogid):
 def manage(blogid):
 
     form1 = Deleteform()
+    form2 = Deletecomment()
 
     #blog id needs a unique number
     blogid=blogid
@@ -101,6 +102,18 @@ def manage(blogid):
 
         return redirect(url_for('main.profile', uname=current_user.username))
 
-
     title = 'View blog post'
-    return render_template('manageblogposts.html',title = title, blogs = blogs,comments =comments, user =user, form1=form1)
+    return render_template('manageblogposts.html',title = title, blogs = blogs,comments =comments, user =user, form1=form1, form2=form2)
+
+    #background process happening without any refreshing
+@main.route('/comment/delete/<int:comid>')
+def commdelete(comid):
+
+    commentrow = Comment.query.filter_by(id = comid).first()
+    blogid=commentrow.blog_id
+    comments = Comment.get_singcomment(comid)
+    comments.deleted = True
+    db.session.add(comments)
+    db.session.commit()
+
+    return redirect(url_for('main.manage', blogid=blogid))

@@ -15,3 +15,6 @@ class Commentform(FlaskForm):
 
 class Deleteform(FlaskForm):
     submit1 = SubmitField('Delete')
+
+class Deletecomment(FlaskForm):
+    submit2 = SubmitField('Delete Comment')
