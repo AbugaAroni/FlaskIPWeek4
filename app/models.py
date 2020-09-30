@@ -3,6 +3,7 @@ from werkzeug.security import generate_password_hash,check_password_hash
 from flask_login import UserMixin
 from . import login_manager
 from datetime import datetime
+from sqlalchemy import desc
 
 
 @login_manager.user_loader
@@ -82,9 +83,9 @@ class Blogs(db.Model):
     #get the new blogs
     @classmethod
     def get_newblogs(cls):
-        #blog = Blogs.query.filter_by(deleted=False).limit(5)
 
-        blog = Blogs.select().order_by(blogs.c.id.desc()).limit(5)
+        blog = Blogs.query.order_by(desc(Blogs.id)).filter_by(deleted=False).limit(5)
+#        blog = Blogs.select().order_by(Blogs.c.id.desc())
 
         return blog
 
