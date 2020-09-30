@@ -35,6 +35,6 @@ You will need to install the Dependencies from the requirements.txt file.
 Execute the command "python3.6 manage.py" whilst in the directory in your command line and you will be able to run the program.
 You will need a text editor to edit and view the code. s
 
-### Link to the published site: [Blog application by Abuga] (https://abugapitchesapp.herokuapp.com/)
+### Link to the published site: [Blog application by Abuga] (https://blogsbyabuga.herokuapp.com/)
 
 ### License: [MIT] (https://github.com/AbugaAroni/FlaskIPWeek4/blob/master/LICENSE)
