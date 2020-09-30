@@ -59,7 +59,7 @@ class Blogs(db.Model):
     blog_content = db.Column(db.String)
     posted = db.Column(db.DateTime,default=datetime.utcnow)
     user_id = db.Column(db.Integer,db.ForeignKey("users.id"))
-    deleted = db.Column(db.Integer, default=0)
+    deleted = db.Column(db.Boolean, default=False)
 
     comments = db.relationship('Comment', backref = 'blogs',lazy = "dynamic")
 
@@ -70,19 +70,22 @@ class Blogs(db.Model):
     #get all blogs
     @classmethod
     def get_blogs(cls):
-        blog = Blogs.query.all()
+        blog = Blogs.query.filter_by(deleted=False).all()
         return blog
 
     #get blogs according to persons id
     @classmethod
     def get_userblog(cls,id):
-        blog = Blogs.query.filter_by(user_id=id).all()
+        blog = Blogs.query.filter_by(user_id=id).filter_by(deleted=False).all()
         return blog
 
     #get the new blogs
     @classmethod
     def get_newblogs(cls):
-        blog = Blogs.query.limit(5).all()
+        #blog = Blogs.query.filter_by(deleted=False).limit(5)
+
+        blog = Blogs.select().order_by(blogs.c.id.desc()).limit(5)
+
         return blog
 
     #get blog according to id

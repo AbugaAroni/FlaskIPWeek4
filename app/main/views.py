@@ -94,9 +94,12 @@ def manage(blogid):
     comments = Comment.get_comments(blogid)
     user = User.query.all()
 
-    if form.validate_on_submit():
+    if form1.validate_on_submit():
+        blogs.deleted = True
+        db.session.add(blogs)
+        db.session.commit()
 
-      return redirect(url_for('main.manage',blogid=blogid))
+        return redirect(url_for('main.profile', uname=current_user.username))
 
 
     title = 'View blog post'

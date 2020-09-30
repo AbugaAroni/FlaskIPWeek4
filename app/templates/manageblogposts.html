@@ -18,10 +18,10 @@
               <p> {{blogs.blog_content}}</p>
                 <div class="row">
                   <div class="col-md-2">
-                    {{ wtf.quick_form(form1) }}
+                    <button type="button" onClick="window.location.href='/'" class="btn btn-primary">Edit blog</button>
                   </div>
                   <div class="col-md-2">
-                    <a href="#">Edit post</a>
+                    {{ wtf.quick_form(form1) }}
                   </div>
                 </div>
             {%else%}
