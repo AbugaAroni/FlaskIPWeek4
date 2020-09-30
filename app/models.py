@@ -121,3 +121,13 @@ class Comment(db.Model):
     def get_singcomment(cls,id):
         com = Comment.query.filter_by(id=id).first()
         return com
+
+class Quotes:
+    '''
+    quotes class to define quotes Objects
+    '''
+
+    def __init__(self,id,author,quote):
+        self.id =id
+        self.author = author
+        self.quote = quote

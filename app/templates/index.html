@@ -7,6 +7,10 @@
 <hr>
 <h1 style="text-align: center;">All Blog Posts</h1>
   <hr>  <hr>
+  {% if dayquote %}
+<p style="text-align: center;"> <span style="font-style: italic;">"{{dayquote.quote}}"</span> - <span style="font-weight: bold;"> {{dayquote.author}} </span></p>
+  {% endif %}
+  <hr> <hr>
 <!--Display pitches-->
 <div class="col-md-12">
   {% if blogposts %}

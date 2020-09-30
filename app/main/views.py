@@ -4,6 +4,7 @@ from flask_login import login_required, current_user
 from ..models import User, Blogs, Comment
 from .. import db
 from .forms import BlogForm, Deleteform, Commentform, Deletecomment, UpdateBlog
+from ..requests import get_quotes
 
 # Views
 @main.route('/')
@@ -13,7 +14,8 @@ def index():
     View root page function that returns the index page and its data
     '''
     blogposts = Blogs.get_blogs()
-    return render_template('index.html', blogposts =blogposts)
+    quotes = get_quotes()
+    return render_template('index.html', blogposts =blogposts, dayquote=quotes)
 
 @main.route('/latestblogs')
 def latestblogs():
